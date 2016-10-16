@@ -1,0 +1,23 @@
+CONFIG VCCAUX=3.3;
+
+# Clock signal (Y2: 66.667 MHz) from Texas Instruments CDCE913
+NET sysClk LOC = K15 | IOSTANDARD = LVCMOS33;
+NET sysClk TNM_NET = sysClk;
+TIMESPEC TS_CLOCK_Y2 = PERIOD sysClk 66666.7 kHz;
+
+# User Reset Push Button
+NET usrReset  LOC = V4 | IOSTANDARD = LVCMOS33 | PULLDOWN;  # "USER_RESET"
+NET usrReset  TIG;
+
+# IOB cannot used as general pupose IO.
+CONFIG PROHIBIT = P1,L3;
+
+# Diligent Inc Peripheral Modules and GPIO
+NET SS   LOC = H12 | IOSTANDARD = LVCMOS33;  # "PMOD2_P1"
+NET MOSI LOC = G13 | IOSTANDARD = LVCMOS33;  # "PMOD2_P2"
+NET MISO LOC = E16 | IOSTANDARD = LVCMOS33;  # "PMOD2_P3"
+NET SCLK LOC = E18 | IOSTANDARD = LVCMOS33;  # "PMOD2_P4"
+# PMOD2_P5 connects to GND
+
+# User LEDs
+NET LED1  LOC = P4  | IOSTANDARD = LVCMOS18;  # red D2

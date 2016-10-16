@@ -1,0 +1,3 @@
+verilog work "spi_slave_msg.v"
+verilog work "spi_slave_byte.v"
+verilog work "spi_slave.v"

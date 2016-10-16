@@ -1,0 +1,306 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Tue Oct 20 16:14:40 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+CONFIG VCCAUX = "3.3";
+PROHIBIT = SITE "P1" SITE "L3";
+COMP "SS" LOCATE = SITE "H12" LEVEL 1;
+COMP "MISO" LOCATE = SITE "E16" LEVEL 1;
+COMP "SCLK" LOCATE = SITE "E18" LEVEL 1;
+COMP "MOSI" LOCATE = SITE "G13" LEVEL 1;
+COMP "LED<0>" LOCATE = SITE "P4" LEVEL 1;
+COMP "LED<1>" LOCATE = SITE "L6" LEVEL 1;
+COMP "sysClk" LOCATE = SITE "K15" LEVEL 1;
+COMP "usrReset" LOCATE = SITE "V4" LEVEL 1;
+TIMEGRP sysClk = BEL "byte_if/state_2" BEL "byte_if/state_1" BEL
+        "byte_if/state_0" BEL "byte_if/rxAvailFall_dly" BEL "byte_if/rx_7" BEL
+        "byte_if/rx_6" BEL "byte_if/rx_5" BEL "byte_if/rx_4" BEL
+        "byte_if/rx_3" BEL "byte_if/rx_2" BEL "byte_if/rx_1" BEL
+        "byte_if/rx_0" BEL "byte_if/rxAvailFall" BEL "byte_if/data_7" BEL
+        "byte_if/data_6" BEL "byte_if/data_5" BEL "byte_if/data_4" BEL
+        "byte_if/data_3" BEL "byte_if/data_2" BEL "byte_if/data_1" BEL
+        "byte_if/data_0" BEL "byte_if/SCLKr_2" BEL "msg_if/state_FSM_FFd1" BEL
+        "msg_if/state_FSM_FFd2" BEL "msg_if/tx_7" BEL "msg_if/tx_6" BEL
+        "msg_if/tx_5" BEL "msg_if/tx_4" BEL "msg_if/tx_3" BEL "msg_if/tx_2"
+        BEL "msg_if/tx_1" BEL "msg_if/tx_0" BEL "msg_if/byteId_1" BEL
+        "msg_if/byteId_0" BEL "msg_if/regId_3" BEL "msg_if/regId_2" BEL
+        "msg_if/regId_1" BEL "msg_if/regId_0" BEL "msg_if/registers_15_511"
+        BEL "msg_if/registers_15_510" BEL "msg_if/registers_15_509" BEL
+        "msg_if/registers_15_508" BEL "msg_if/registers_15_507" BEL
+        "msg_if/registers_15_506" BEL "msg_if/registers_15_505" BEL
+        "msg_if/registers_15_504" BEL "msg_if/registers_15_503" BEL
+        "msg_if/registers_15_502" BEL "msg_if/registers_15_501" BEL
+        "msg_if/registers_15_500" BEL "msg_if/registers_15_499" BEL
+        "msg_if/registers_15_498" BEL "msg_if/registers_15_497" BEL
+        "msg_if/registers_15_496" BEL "msg_if/registers_15_495" BEL
+        "msg_if/registers_15_494" BEL "msg_if/registers_15_493" BEL
+        "msg_if/registers_15_492" BEL "msg_if/registers_15_491" BEL
+        "msg_if/registers_15_490" BEL "msg_if/registers_15_489" BEL
+        "msg_if/registers_15_488" BEL "msg_if/registers_15_487" BEL
+        "msg_if/registers_15_486" BEL "msg_if/registers_15_485" BEL
+        "msg_if/registers_15_484" BEL "msg_if/registers_15_483" BEL
+        "msg_if/registers_15_482" BEL "msg_if/registers_15_481" BEL
+        "msg_if/registers_15_480" BEL "msg_if/registers_15_479" BEL
+        "msg_if/registers_15_478" BEL "msg_if/registers_15_477" BEL
+        "msg_if/registers_15_476" BEL "msg_if/registers_15_475" BEL
+        "msg_if/registers_15_474" BEL "msg_if/registers_15_473" BEL
+        "msg_if/registers_15_472" BEL "msg_if/registers_15_471" BEL
+        "msg_if/registers_15_470" BEL "msg_if/registers_15_469" BEL
+        "msg_if/registers_15_468" BEL "msg_if/registers_15_467" BEL
+        "msg_if/registers_15_466" BEL "msg_if/registers_15_465" BEL
+        "msg_if/registers_15_464" BEL "msg_if/registers_15_463" BEL
+        "msg_if/registers_15_462" BEL "msg_if/registers_15_461" BEL
+        "msg_if/registers_15_460" BEL "msg_if/registers_15_459" BEL
+        "msg_if/registers_15_458" BEL "msg_if/registers_15_457" BEL
+        "msg_if/registers_15_456" BEL "msg_if/registers_15_455" BEL
+        "msg_if/registers_15_454" BEL "msg_if/registers_15_453" BEL
+        "msg_if/registers_15_452" BEL "msg_if/registers_15_451" BEL
+        "msg_if/registers_15_450" BEL "msg_if/registers_15_449" BEL
+        "msg_if/registers_15_448" BEL "msg_if/registers_15_447" BEL
+        "msg_if/registers_15_446" BEL "msg_if/registers_15_445" BEL
+        "msg_if/registers_15_444" BEL "msg_if/registers_15_443" BEL
+        "msg_if/registers_15_442" BEL "msg_if/registers_15_441" BEL
+        "msg_if/registers_15_440" BEL "msg_if/registers_15_439" BEL
+        "msg_if/registers_15_438" BEL "msg_if/registers_15_437" BEL
+        "msg_if/registers_15_436" BEL "msg_if/registers_15_435" BEL
+        "msg_if/registers_15_434" BEL "msg_if/registers_15_433" BEL
+        "msg_if/registers_15_432" BEL "msg_if/registers_15_431" BEL
+        "msg_if/registers_15_430" BEL "msg_if/registers_15_429" BEL
+        "msg_if/registers_15_428" BEL "msg_if/registers_15_427" BEL
+        "msg_if/registers_15_426" BEL "msg_if/registers_15_425" BEL
+        "msg_if/registers_15_424" BEL "msg_if/registers_15_423" BEL
+        "msg_if/registers_15_422" BEL "msg_if/registers_15_421" BEL
+        "msg_if/registers_15_420" BEL "msg_if/registers_15_419" BEL
+        "msg_if/registers_15_418" BEL "msg_if/registers_15_417" BEL
+        "msg_if/registers_15_416" BEL "msg_if/registers_15_415" BEL
+        "msg_if/registers_15_414" BEL "msg_if/registers_15_413" BEL
+        "msg_if/registers_15_412" BEL "msg_if/registers_15_411" BEL
+        "msg_if/registers_15_410" BEL "msg_if/registers_15_409" BEL
+        "msg_if/registers_15_408" BEL "msg_if/registers_15_407" BEL
+        "msg_if/registers_15_406" BEL "msg_if/registers_15_405" BEL
+        "msg_if/registers_15_404" BEL "msg_if/registers_15_403" BEL
+        "msg_if/registers_15_402" BEL "msg_if/registers_15_401" BEL
+        "msg_if/registers_15_400" BEL "msg_if/registers_15_399" BEL
+        "msg_if/registers_15_398" BEL "msg_if/registers_15_397" BEL
+        "msg_if/registers_15_396" BEL "msg_if/registers_15_395" BEL
+        "msg_if/registers_15_394" BEL "msg_if/registers_15_393" BEL
+        "msg_if/registers_15_392" BEL "msg_if/registers_15_391" BEL
+        "msg_if/registers_15_390" BEL "msg_if/registers_15_389" BEL
+        "msg_if/registers_15_388" BEL "msg_if/registers_15_387" BEL
+        "msg_if/registers_15_386" BEL "msg_if/registers_15_385" BEL
+        "msg_if/registers_15_384" BEL "msg_if/registers_15_383" BEL
+        "msg_if/registers_15_382" BEL "msg_if/registers_15_381" BEL
+        "msg_if/registers_15_380" BEL "msg_if/registers_15_379" BEL
+        "msg_if/registers_15_378" BEL "msg_if/registers_15_377" BEL
+        "msg_if/registers_15_376" BEL "msg_if/registers_15_375" BEL
+        "msg_if/registers_15_374" BEL "msg_if/registers_15_373" BEL
+        "msg_if/registers_15_372" BEL "msg_if/registers_15_371" BEL
+        "msg_if/registers_15_370" BEL "msg_if/registers_15_369" BEL
+        "msg_if/registers_15_368" BEL "msg_if/registers_15_367" BEL
+        "msg_if/registers_15_366" BEL "msg_if/registers_15_365" BEL
+        "msg_if/registers_15_364" BEL "msg_if/registers_15_363" BEL
+        "msg_if/registers_15_362" BEL "msg_if/registers_15_361" BEL
+        "msg_if/registers_15_360" BEL "msg_if/registers_15_359" BEL
+        "msg_if/registers_15_358" BEL "msg_if/registers_15_357" BEL
+        "msg_if/registers_15_356" BEL "msg_if/registers_15_355" BEL
+        "msg_if/registers_15_354" BEL "msg_if/registers_15_353" BEL
+        "msg_if/registers_15_352" BEL "msg_if/registers_15_351" BEL
+        "msg_if/registers_15_350" BEL "msg_if/registers_15_349" BEL
+        "msg_if/registers_15_348" BEL "msg_if/registers_15_347" BEL
+        "msg_if/registers_15_346" BEL "msg_if/registers_15_345" BEL
+        "msg_if/registers_15_344" BEL "msg_if/registers_15_343" BEL
+        "msg_if/registers_15_342" BEL "msg_if/registers_15_341" BEL
+        "msg_if/registers_15_340" BEL "msg_if/registers_15_339" BEL
+        "msg_if/registers_15_338" BEL "msg_if/registers_15_337" BEL
+        "msg_if/registers_15_336" BEL "msg_if/registers_15_335" BEL
+        "msg_if/registers_15_334" BEL "msg_if/registers_15_333" BEL
+        "msg_if/registers_15_332" BEL "msg_if/registers_15_331" BEL
+        "msg_if/registers_15_330" BEL "msg_if/registers_15_329" BEL
+        "msg_if/registers_15_328" BEL "msg_if/registers_15_327" BEL
+        "msg_if/registers_15_326" BEL "msg_if/registers_15_325" BEL
+        "msg_if/registers_15_324" BEL "msg_if/registers_15_323" BEL
+        "msg_if/registers_15_322" BEL "msg_if/registers_15_321" BEL
+        "msg_if/registers_15_320" BEL "msg_if/registers_15_319" BEL
+        "msg_if/registers_15_318" BEL "msg_if/registers_15_317" BEL
+        "msg_if/registers_15_316" BEL "msg_if/registers_15_315" BEL
+        "msg_if/registers_15_314" BEL "msg_if/registers_15_313" BEL
+        "msg_if/registers_15_312" BEL "msg_if/registers_15_311" BEL
+        "msg_if/registers_15_310" BEL "msg_if/registers_15_309" BEL
+        "msg_if/registers_15_308" BEL "msg_if/registers_15_307" BEL
+        "msg_if/registers_15_306" BEL "msg_if/registers_15_305" BEL
+        "msg_if/registers_15_304" BEL "msg_if/registers_15_303" BEL
+        "msg_if/registers_15_302" BEL "msg_if/registers_15_301" BEL
+        "msg_if/registers_15_300" BEL "msg_if/registers_15_299" BEL
+        "msg_if/registers_15_298" BEL "msg_if/registers_15_297" BEL
+        "msg_if/registers_15_296" BEL "msg_if/registers_15_295" BEL
+        "msg_if/registers_15_294" BEL "msg_if/registers_15_293" BEL
+        "msg_if/registers_15_292" BEL "msg_if/registers_15_291" BEL
+        "msg_if/registers_15_290" BEL "msg_if/registers_15_289" BEL
+        "msg_if/registers_15_288" BEL "msg_if/registers_15_287" BEL
+        "msg_if/registers_15_286" BEL "msg_if/registers_15_285" BEL
+        "msg_if/registers_15_284" BEL "msg_if/registers_15_283" BEL
+        "msg_if/registers_15_282" BEL "msg_if/registers_15_281" BEL
+        "msg_if/registers_15_280" BEL "msg_if/registers_15_279" BEL
+        "msg_if/registers_15_278" BEL "msg_if/registers_15_277" BEL
+        "msg_if/registers_15_276" BEL "msg_if/registers_15_275" BEL
+        "msg_if/registers_15_274" BEL "msg_if/registers_15_273" BEL
+        "msg_if/registers_15_272" BEL "msg_if/registers_15_271" BEL
+        "msg_if/registers_15_270" BEL "msg_if/registers_15_269" BEL
+        "msg_if/registers_15_268" BEL "msg_if/registers_15_267" BEL
+        "msg_if/registers_15_266" BEL "msg_if/registers_15_265" BEL
+        "msg_if/registers_15_264" BEL "msg_if/registers_15_263" BEL
+        "msg_if/registers_15_262" BEL "msg_if/registers_15_261" BEL
+        "msg_if/registers_15_260" BEL "msg_if/registers_15_259" BEL
+        "msg_if/registers_15_258" BEL "msg_if/registers_15_257" BEL
+        "msg_if/registers_15_256" BEL "msg_if/registers_15_255" BEL
+        "msg_if/registers_15_254" BEL "msg_if/registers_15_253" BEL
+        "msg_if/registers_15_252" BEL "msg_if/registers_15_251" BEL
+        "msg_if/registers_15_250" BEL "msg_if/registers_15_249" BEL
+        "msg_if/registers_15_248" BEL "msg_if/registers_15_247" BEL
+        "msg_if/registers_15_246" BEL "msg_if/registers_15_245" BEL
+        "msg_if/registers_15_244" BEL "msg_if/registers_15_243" BEL
+        "msg_if/registers_15_242" BEL "msg_if/registers_15_241" BEL
+        "msg_if/registers_15_240" BEL "msg_if/registers_15_239" BEL
+        "msg_if/registers_15_238" BEL "msg_if/registers_15_237" BEL
+        "msg_if/registers_15_236" BEL "msg_if/registers_15_235" BEL
+        "msg_if/registers_15_234" BEL "msg_if/registers_15_233" BEL
+        "msg_if/registers_15_232" BEL "msg_if/registers_15_231" BEL
+        "msg_if/registers_15_230" BEL "msg_if/registers_15_229" BEL
+        "msg_if/registers_15_228" BEL "msg_if/registers_15_227" BEL
+        "msg_if/registers_15_226" BEL "msg_if/registers_15_225" BEL
+        "msg_if/registers_15_224" BEL "msg_if/registers_15_223" BEL
+        "msg_if/registers_15_222" BEL "msg_if/registers_15_221" BEL
+        "msg_if/registers_15_220" BEL "msg_if/registers_15_219" BEL
+        "msg_if/registers_15_218" BEL "msg_if/registers_15_217" BEL
+        "msg_if/registers_15_216" BEL "msg_if/registers_15_215" BEL
+        "msg_if/registers_15_214" BEL "msg_if/registers_15_213" BEL
+        "msg_if/registers_15_212" BEL "msg_if/registers_15_211" BEL
+        "msg_if/registers_15_210" BEL "msg_if/registers_15_209" BEL
+        "msg_if/registers_15_208" BEL "msg_if/registers_15_207" BEL
+        "msg_if/registers_15_206" BEL "msg_if/registers_15_205" BEL
+        "msg_if/registers_15_204" BEL "msg_if/registers_15_203" BEL
+        "msg_if/registers_15_202" BEL "msg_if/registers_15_201" BEL
+        "msg_if/registers_15_200" BEL "msg_if/registers_15_199" BEL
+        "msg_if/registers_15_198" BEL "msg_if/registers_15_197" BEL
+        "msg_if/registers_15_196" BEL "msg_if/registers_15_195" BEL
+        "msg_if/registers_15_194" BEL "msg_if/registers_15_193" BEL
+        "msg_if/registers_15_192" BEL "msg_if/registers_15_191" BEL
+        "msg_if/registers_15_190" BEL "msg_if/registers_15_189" BEL
+        "msg_if/registers_15_188" BEL "msg_if/registers_15_187" BEL
+        "msg_if/registers_15_186" BEL "msg_if/registers_15_185" BEL
+        "msg_if/registers_15_184" BEL "msg_if/registers_15_183" BEL
+        "msg_if/registers_15_182" BEL "msg_if/registers_15_181" BEL
+        "msg_if/registers_15_180" BEL "msg_if/registers_15_179" BEL
+        "msg_if/registers_15_178" BEL "msg_if/registers_15_177" BEL
+        "msg_if/registers_15_176" BEL "msg_if/registers_15_175" BEL
+        "msg_if/registers_15_174" BEL "msg_if/registers_15_173" BEL
+        "msg_if/registers_15_172" BEL "msg_if/registers_15_171" BEL
+        "msg_if/registers_15_170" BEL "msg_if/registers_15_169" BEL
+        "msg_if/registers_15_168" BEL "msg_if/registers_15_167" BEL
+        "msg_if/registers_15_166" BEL "msg_if/registers_15_165" BEL
+        "msg_if/registers_15_164" BEL "msg_if/registers_15_163" BEL
+        "msg_if/registers_15_162" BEL "msg_if/registers_15_161" BEL
+        "msg_if/registers_15_160" BEL "msg_if/registers_15_159" BEL
+        "msg_if/registers_15_158" BEL "msg_if/registers_15_157" BEL
+        "msg_if/registers_15_156" BEL "msg_if/registers_15_155" BEL
+        "msg_if/registers_15_154" BEL "msg_if/registers_15_153" BEL
+        "msg_if/registers_15_152" BEL "msg_if/registers_15_151" BEL
+        "msg_if/registers_15_150" BEL "msg_if/registers_15_149" BEL
+        "msg_if/registers_15_148" BEL "msg_if/registers_15_147" BEL
+        "msg_if/registers_15_146" BEL "msg_if/registers_15_145" BEL
+        "msg_if/registers_15_144" BEL "msg_if/registers_15_143" BEL
+        "msg_if/registers_15_142" BEL "msg_if/registers_15_141" BEL
+        "msg_if/registers_15_140" BEL "msg_if/registers_15_139" BEL
+        "msg_if/registers_15_138" BEL "msg_if/registers_15_137" BEL
+        "msg_if/registers_15_136" BEL "msg_if/registers_15_135" BEL
+        "msg_if/registers_15_134" BEL "msg_if/registers_15_133" BEL
+        "msg_if/registers_15_132" BEL "msg_if/registers_15_131" BEL
+        "msg_if/registers_15_130" BEL "msg_if/registers_15_129" BEL
+        "msg_if/registers_15_128" BEL "msg_if/registers_15_127" BEL
+        "msg_if/registers_15_126" BEL "msg_if/registers_15_125" BEL
+        "msg_if/registers_15_124" BEL "msg_if/registers_15_123" BEL
+        "msg_if/registers_15_122" BEL "msg_if/registers_15_121" BEL
+        "msg_if/registers_15_120" BEL "msg_if/registers_15_119" BEL
+        "msg_if/registers_15_118" BEL "msg_if/registers_15_117" BEL
+        "msg_if/registers_15_116" BEL "msg_if/registers_15_115" BEL
+        "msg_if/registers_15_114" BEL "msg_if/registers_15_113" BEL
+        "msg_if/registers_15_112" BEL "msg_if/registers_15_111" BEL
+        "msg_if/registers_15_110" BEL "msg_if/registers_15_109" BEL
+        "msg_if/registers_15_108" BEL "msg_if/registers_15_107" BEL
+        "msg_if/registers_15_106" BEL "msg_if/registers_15_105" BEL
+        "msg_if/registers_15_104" BEL "msg_if/registers_15_103" BEL
+        "msg_if/registers_15_102" BEL "msg_if/registers_15_101" BEL
+        "msg_if/registers_15_100" BEL "msg_if/registers_15_99" BEL
+        "msg_if/registers_15_98" BEL "msg_if/registers_15_97" BEL
+        "msg_if/registers_15_96" BEL "msg_if/registers_15_95" BEL
+        "msg_if/registers_15_94" BEL "msg_if/registers_15_93" BEL
+        "msg_if/registers_15_92" BEL "msg_if/registers_15_91" BEL
+        "msg_if/registers_15_90" BEL "msg_if/registers_15_89" BEL
+        "msg_if/registers_15_88" BEL "msg_if/registers_15_87" BEL
+        "msg_if/registers_15_86" BEL "msg_if/registers_15_85" BEL
+        "msg_if/registers_15_84" BEL "msg_if/registers_15_83" BEL
+        "msg_if/registers_15_82" BEL "msg_if/registers_15_81" BEL
+        "msg_if/registers_15_80" BEL "msg_if/registers_15_79" BEL
+        "msg_if/registers_15_78" BEL "msg_if/registers_15_77" BEL
+        "msg_if/registers_15_76" BEL "msg_if/registers_15_75" BEL
+        "msg_if/registers_15_74" BEL "msg_if/registers_15_73" BEL
+        "msg_if/registers_15_72" BEL "msg_if/registers_15_71" BEL
+        "msg_if/registers_15_70" BEL "msg_if/registers_15_69" BEL
+        "msg_if/registers_15_68" BEL "msg_if/registers_15_67" BEL
+        "msg_if/registers_15_66" BEL "msg_if/registers_15_65" BEL
+        "msg_if/registers_15_64" BEL "msg_if/registers_15_63" BEL
+        "msg_if/registers_15_62" BEL "msg_if/registers_15_61" BEL
+        "msg_if/registers_15_60" BEL "msg_if/registers_15_59" BEL
+        "msg_if/registers_15_58" BEL "msg_if/registers_15_57" BEL
+        "msg_if/registers_15_56" BEL "msg_if/registers_15_55" BEL
+        "msg_if/registers_15_54" BEL "msg_if/registers_15_53" BEL
+        "msg_if/registers_15_52" BEL "msg_if/registers_15_51" BEL
+        "msg_if/registers_15_50" BEL "msg_if/registers_15_49" BEL
+        "msg_if/registers_15_48" BEL "msg_if/registers_15_47" BEL
+        "msg_if/registers_15_46" BEL "msg_if/registers_15_45" BEL
+        "msg_if/registers_15_44" BEL "msg_if/registers_15_43" BEL
+        "msg_if/registers_15_42" BEL "msg_if/registers_15_41" BEL
+        "msg_if/registers_15_40" BEL "msg_if/registers_15_39" BEL
+        "msg_if/registers_15_38" BEL "msg_if/registers_15_37" BEL
+        "msg_if/registers_15_36" BEL "msg_if/registers_15_35" BEL
+        "msg_if/registers_15_34" BEL "msg_if/registers_15_33" BEL
+        "msg_if/registers_15_32" BEL "msg_if/registers_15_31" BEL
+        "msg_if/registers_15_30" BEL "msg_if/registers_15_29" BEL
+        "msg_if/registers_15_28" BEL "msg_if/registers_15_27" BEL
+        "msg_if/registers_15_26" BEL "msg_if/registers_15_25" BEL
+        "msg_if/registers_15_24" BEL "msg_if/registers_15_23" BEL
+        "msg_if/registers_15_22" BEL "msg_if/registers_15_21" BEL
+        "msg_if/registers_15_20" BEL "msg_if/registers_15_19" BEL
+        "msg_if/registers_15_18" BEL "msg_if/registers_15_17" BEL
+        "msg_if/registers_15_16" BEL "msg_if/registers_15_15" BEL
+        "msg_if/registers_15_14" BEL "msg_if/registers_15_13" BEL
+        "msg_if/registers_15_12" BEL "msg_if/registers_15_11" BEL
+        "msg_if/registers_15_10" BEL "msg_if/registers_15_9" BEL
+        "msg_if/registers_15_8" BEL "msg_if/registers_15_7" BEL
+        "msg_if/registers_15_6" BEL "msg_if/registers_15_5" BEL
+        "msg_if/registers_15_4" BEL "msg_if/registers_15_3" BEL
+        "msg_if/registers_15_2" BEL "msg_if/registers_15_1" BEL
+        "msg_if/registers_15_0" BEL "byte_if/rxAvail" BEL "byte_if/MISOr" BEL
+        "byte_if/rxAvailFall_1" BEL "byte_if/rxAvailFall_dly_1" BEL
+        "byte_if/rxAvailFall_dly_2" BEL "byte_if/rxAvailFall_dly_3" BEL
+        "byte_if/rxAvailFall_dly_4" BEL "byte_if/rxAvailFall_dly_5" BEL
+        "byte_if/rxAvailFall_dly_6" BEL "byte_if/rxAvailFall_dly_7" BEL
+        "byte_if/rxAvailFall_dly_8" BEL "byte_if/rxAvailFall_dly_9" BEL
+        "byte_if/rxAvailFall_dly_10" BEL "byte_if/rxAvailFall_dly_11" BEL
+        "byte_if/rxAvailFall_dly_12" BEL "byte_if/rxAvailFall_dly_13" BEL
+        "byte_if/rxAvailFall_dly_14" BEL "byte_if/rxAvailFall_dly_15" BEL
+        "byte_if/rxAvailFall_dly_16" BEL "byte_if/rxAvailFall_dly_17" BEL
+        "byte_if/rxAvailFall_dly_18" BEL "byte_if/rxAvailFall_dly_19" BEL
+        "byte_if/rxAvailFall_dly_20" BEL "byte_if/rxAvailFall_dly_21" BEL
+        "byte_if/rxAvailFall_dly_22" BEL "byte_if/rxAvailFall_dly_23" BEL
+        "byte_if/rxAvailFall_dly_24" BEL "byte_if/rxAvailFall_dly_25" BEL
+        "msg_if/state_FSM_FFd1_1" BEL "byte_if/rxAvailFall_2" BEL
+        "sysClk_BUFGP/BUFG" BEL "byte_if/Mshreg_SSr_1" BEL "byte_if/SSr_1" BEL
+        "byte_if/Mshreg_SCLKr_1" BEL "byte_if/SCLKr_1" BEL
+        "byte_if/Mshreg_MOSIr_1" BEL "byte_if/MOSIr_1";
+TS_sysClk = PERIOD TIMEGRP "sysClk" 66.6667 MHz HIGH 50%;
+PIN usrReset_pins<0> = BEL "usrReset" PINNAME PAD;
+PIN "usrReset_pins<0>" TIG;
+SCHEMATIC END;
+

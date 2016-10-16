@@ -1,0 +1,491 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
+ 
+--> Reading design: spi_msg.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "spi_msg.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "spi_msg"
+Output Format                      : NGC
+Target Device                      : xc6slx9-2-csg324
+
+---- Source Options
+Top Module Name                    : spi_msg
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_msg_if.v" into library work
+Parsing module <spi_msg_if>.
+Analyzing Verilog file "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_byte_if.v" into library work
+Parsing module <spi_byte_if>.
+Analyzing Verilog file "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_msg.v" into library work
+Parsing module <spi_msg>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <spi_msg>.
+
+Elaborating module <spi_byte_if>.
+
+Elaborating module <spi_msg_if(nrRWregs=4,nrROregs=12)>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <spi_msg>.
+    Related source file is "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_msg.v".
+        nrRWregs = 4
+        nrROregs = 12
+    Summary:
+	no macro.
+Unit <spi_msg> synthesized.
+
+Synthesizing Unit <spi_byte_if>.
+    Related source file is "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_byte_if.v".
+    Found 3-bit register for signal <state>.
+    Found 1-bit register for signal <rxAvail>.
+    Found 2-bit register for signal <SSr>.
+    Found 2-bit register for signal <MOSIr>.
+    Found 8-bit register for signal <rx>.
+    Found 8-bit register for signal <data>.
+    Found 1-bit register for signal <MISOr>.
+    Found 1-bit register for signal <rxAvailFall>.
+    Found 1-bit register for signal <rxAvailFall_dly>.
+    Found 3-bit register for signal <SCLKr>.
+    Found 3-bit adder for signal <state[2]_GND_2_o_add_8_OUT> created at line 46.
+    Found 1-bit tristate buffer for signal <MISO> created at line 122
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  30 D-type flip-flop(s).
+	inferred   3 Multiplexer(s).
+	inferred   1 Tristate(s).
+Unit <spi_byte_if> synthesized.
+
+Synthesizing Unit <spi_msg_if>.
+    Related source file is "C:\Users\Coert\Documents\GitHub\fpga-spi_msg_if\spi_msg_if.v".
+        nrRWregs = 4
+        nrROregs = 12
+    Found 512-bit register for signal <n0128[511:0]>.
+    Found 4-bit register for signal <state>.
+    Found 4-bit register for signal <regId>.
+    Found 2-bit register for signal <byteId>.
+    Found 8-bit register for signal <tx>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 18                                             |
+    | Inputs             | 8                                              |
+    | Outputs            | 6                                              |
+    | Clock              | sysClk (rising_edge)                           |
+    | Reset              | usrReset (positive)                            |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 0000                                           |
+    | Power Up State     | 0000                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 2-bit adder for signal <byteId[1]_GND_4_o_add_3_OUT> created at line 70.
+    Found 8-bit 16-to-1 multiplexer for signal <rx[3]_registers[15][31]_wide_mux_0_OUT> created at line 63.
+    Found 8-bit 16-to-1 multiplexer for signal <regId[3]_registers[15][23]_wide_mux_4_OUT> created at line 72.
+    Found 8-bit 16-to-1 multiplexer for signal <regId[3]_registers[15][15]_wide_mux_5_OUT> created at line 73.
+    Found 8-bit 16-to-1 multiplexer for signal <regId[3]_registers[15][7]_wide_mux_6_OUT> created at line 74.
+    Found 8-bit 3-to-1 multiplexer for signal <byteId[1]_X_4_o_wide_mux_7_OUT> created at line 71.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred 526 D-type flip-flop(s).
+	inferred  69 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <spi_msg_if> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 2-bit adder                                           : 1
+ 3-bit adder                                           : 1
+# Registers                                            : 14
+ 1-bit register                                        : 4
+ 2-bit register                                        : 3
+ 3-bit register                                        : 2
+ 4-bit register                                        : 1
+ 512-bit register                                      : 1
+ 8-bit register                                        : 3
+# Multiplexers                                         : 72
+ 1-bit 2-to-1 multiplexer                              : 1
+ 3-bit 2-to-1 multiplexer                              : 1
+ 8-bit 16-to-1 multiplexer                             : 4
+ 8-bit 2-to-1 multiplexer                              : 65
+ 8-bit 3-to-1 multiplexer                              : 1
+# Tristates                                            : 1
+ 1-bit tristate buffer                                 : 1
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <spi_byte_if>.
+The following registers are absorbed into counter <state>: 1 register on signal <state>.
+Unit <spi_byte_if> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 2-bit adder                                           : 1
+# Counters                                             : 1
+ 3-bit up counter                                      : 1
+# Registers                                            : 553
+ Flip-Flops                                            : 553
+# Multiplexers                                         : 78
+ 1-bit 2-to-1 multiplexer                              : 9
+ 8-bit 16-to-1 multiplexer                             : 4
+ 8-bit 2-to-1 multiplexer                              : 64
+ 8-bit 3-to-1 multiplexer                              : 1
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <msg_if/FSM_0> on signal <state[1:2]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 00
+ 0001  | 01
+ 0010  | 10
+ 0011  | 11
+-------------------
+
+Optimizing unit <spi_msg> ...
+
+Optimizing unit <spi_msg_if> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block spi_msg, actual ratio is 20.
+FlipFlop byte_if/rxAvailFall has been replicated 2 time(s)
+FlipFlop byte_if/rxAvailFall_dly has been replicated 25 time(s)
+FlipFlop msg_if/state_FSM_FFd1 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <spi_msg> :
+	Found 2-bit shift register for signal <byte_if/SCLKr_1>.
+	Found 2-bit shift register for signal <byte_if/MOSIr_1>.
+	Found 2-bit shift register for signal <byte_if/SSr_1>.
+Unit <spi_msg> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 580
+ Flip-Flops                                            : 580
+# Shift Registers                                      : 3
+ 2-bit shift register                                  : 3
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : spi_msg.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 1361
+#      GND                         : 1
+#      LUT2                        : 17
+#      LUT3                        : 28
+#      LUT4                        : 19
+#      LUT5                        : 515
+#      LUT6                        : 688
+#      MUXF7                       : 64
+#      MUXF8                       : 28
+#      VCC                         : 1
+# FlipFlops/Latches                : 583
+#      FD                          : 2
+#      FD_1                        : 29
+#      FDC                         : 4
+#      FDCE                        : 515
+#      FDE                         : 33
+# Shift Registers                  : 3
+#      SRLC16E                     : 3
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 7
+#      IBUF                        : 4
+#      OBUF                        : 2
+#      OBUFT                       : 1
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9csg324-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             583  out of  11440     5%  
+ Number of Slice LUTs:                 1270  out of   5720    22%  
+    Number used as Logic:              1267  out of   5720    22%  
+    Number used as Memory:                3  out of   1440     0%  
+       Number used as SRL:                3
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   1295
+   Number with an unused Flip Flop:     712  out of   1295    54%  
+   Number with an unused LUT:            25  out of   1295     1%  
+   Number of fully used LUT-FF pairs:   558  out of   1295    43%  
+   Number of unique control sets:         9
+
+IO Utilization: 
+ Number of IOs:                           8
+ Number of bonded IOBs:                   8  out of    200     4%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+sysClk                             | BUFGP                  | 586   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 6.574ns (Maximum Frequency: 152.111MHz)
+   Minimum input arrival time before clock: 4.247ns
+   Maximum output required time after clock: 7.022ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sysClk'
+  Clock period: 6.574ns (frequency: 152.111MHz)
+  Total number of paths / destination ports: 10106 / 1128
+-------------------------------------------------------------------------
+Delay:               3.287ns (Levels of Logic = 0)
+  Source:            byte_if/rxAvailFall_2 (FF)
+  Destination:       msg_if/byteId_1 (FF)
+  Source Clock:      sysClk falling
+  Destination Clock: sysClk rising
+
+  Data Path: byte_if/rxAvailFall_2 to msg_if/byteId_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD_1:C->Q           518   0.525   2.460  byte_if/rxAvailFall_2 (byte_if/rxAvailFall_2)
+     FDE:CE                    0.302          msg_if/regId_0
+    ----------------------------------------
+    Total                      3.287ns (0.827ns logic, 2.460ns route)
+                                       (25.2% logic, 74.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'sysClk'
+  Total number of paths / destination ports: 522 / 522
+-------------------------------------------------------------------------
+Offset:              4.247ns (Levels of Logic = 1)
+  Source:            usrReset (PAD)
+  Destination:       byte_if/state_2 (FF)
+  Destination Clock: sysClk rising
+
+  Data Path: usrReset to byte_if/state_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O           519   1.328   2.460  usrReset_IBUF (usrReset_IBUF)
+     FDCE:CLR                  0.459          byte_if/state_0
+    ----------------------------------------
+    Total                      4.247ns (1.787ns logic, 2.460ns route)
+                                       (42.1% logic, 57.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'sysClk'
+  Total number of paths / destination ports: 66 / 3
+-------------------------------------------------------------------------
+Offset:              7.022ns (Levels of Logic = 3)
+  Source:            msg_if/registers_15_462 (FF)
+  Destination:       LED<1> (PAD)
+  Source Clock:      sysClk rising
+
+  Data Path: msg_if/registers_15_462 to LED<1>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             4   0.525   1.259  msg_if/registers_15_462 (msg_if/registers_15_462)
+     LUT6:I0->O            1   0.254   1.137  LED<1><0>1 (LED<1><0>)
+     LUT6:I0->O            1   0.254   0.681  LED<1><0>7 (LED_1_OBUF)
+     OBUF:I->O                 2.912          LED_1_OBUF (LED<1>)
+    ----------------------------------------
+    Total                      7.022ns (3.945ns logic, 3.077ns route)
+                                       (56.2% logic, 43.8% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock sysClk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+sysClk         |    6.200|    3.287|    2.018|         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.96 secs
+ 
+--> 
+
+Total memory usage is 296200 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

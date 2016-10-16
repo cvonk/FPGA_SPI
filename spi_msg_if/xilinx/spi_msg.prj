@@ -1,0 +1,3 @@
+verilog work "spi_msg_if.v"
+verilog work "spi_byte_if.v"
+verilog work "spi_msg.v"

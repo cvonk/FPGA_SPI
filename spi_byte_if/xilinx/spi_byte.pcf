@@ -1,0 +1,31 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Tue Oct 20 18:30:26 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+CONFIG VCCAUX = "3.3";
+PROHIBIT = SITE "P1" SITE "L3";
+COMP "LED1" LOCATE = SITE "P4" LEVEL 1;
+COMP "MISO" LOCATE = SITE "E16" LEVEL 1;
+COMP "SS" LOCATE = SITE "H12" LEVEL 1;
+COMP "SCLK" LOCATE = SITE "E18" LEVEL 1;
+COMP "sysClk" LOCATE = SITE "K15" LEVEL 1;
+COMP "MOSI" LOCATE = SITE "G13" LEVEL 1;
+COMP "usrReset" LOCATE = SITE "V4" LEVEL 1;
+TIMEGRP sysClk = BEL "byte_if/state_2" BEL "byte_if/state_1" BEL
+        "byte_if/state_0" BEL "byte_if/rxAvailFall_dly" BEL "byte_if/rx_7" BEL
+        "byte_if/rx_6" BEL "byte_if/rx_5" BEL "byte_if/rx_4" BEL
+        "byte_if/rx_3" BEL "byte_if/rx_2" BEL "byte_if/rx_1" BEL
+        "byte_if/rx_0" BEL "byte_if/rxAvailFall" BEL "byte_if/data_7" BEL
+        "byte_if/data_6" BEL "byte_if/data_5" BEL "byte_if/data_4" BEL
+        "byte_if/data_3" BEL "byte_if/data_2" BEL "byte_if/data_1" BEL
+        "byte_if/data_0" BEL "byte_if/rxAvail" BEL "byte_if/SCLKr_2" BEL
+        "byte_if/SSr_2" BEL "byte_if/MISOr" BEL "LED1" BEL "sysClk_BUFGP/BUFG"
+        BEL "byte_if/Mshreg_SSr_1" BEL "byte_if/SSr_1" BEL
+        "byte_if/Mshreg_SCLKr_1" BEL "byte_if/SCLKr_1" BEL
+        "byte_if/Mshreg_MOSIr_1" BEL "byte_if/MOSIr_1";
+TS_CLOCK_Y2 = PERIOD TIMEGRP "sysClk" 66.6667 MHz HIGH 50%;
+PIN usrReset_pins<0> = BEL "usrReset" PINNAME PAD;
+PIN "usrReset_pins<0>" TIG;
+SCHEMATIC END;
+

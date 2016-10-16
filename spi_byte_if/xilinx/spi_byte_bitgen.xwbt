@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\Coert\Documents\GitHub\fpga-spi_byte_if\spi_byte.ncd
+OUTFILE=C:\Users\Coert\Documents\GitHub\fpga-spi_byte_if\spi_byte.bit
+FAMILY=Spartan6
+PART=xc6slx9-2csg324
+WORKINGDIR=C:\Users\Coert\Documents\GitHub\fpga-spi_byte_if
+LICENSE=WebPack
+USER_INFO=208790051_208823088_0_017

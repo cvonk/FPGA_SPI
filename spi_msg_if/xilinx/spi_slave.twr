@@ -1,0 +1,291 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 2
+-n 3 -fastpaths -xml spi_slave.twx spi_slave.ncd -o spi_slave.twr spi_slave.pcf
+-ucf spi_slave.ucf
+
+Design file:              spi_slave.ncd
+Physical constraint file: spi_slave.pcf
+Device,package,speed:     xc6slx9,csg324,C,-2 (PRODUCTION 1.23 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_sysClk = PERIOD TIMEGRP "sysClk" 66.6667 MHz HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 10103 paths analyzed, 3279 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   8.584ns.
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/registers_15_458 (SLICE_X2Y33.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     3.207ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               byte_if/rxAvailFall_2 (FF)
+  Destination:          msg_if/registers_15_458 (FF)
+  Requirement:          7.499ns
+  Data Path Delay:      4.213ns (Levels of Logic = 0)
+  Clock Path Skew:      -0.044ns (0.644 - 0.688)
+  Source Clock:         sysClk_BUFGP falling at 7.500ns
+  Destination Clock:    sysClk_BUFGP rising at 14.999ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: byte_if/rxAvailFall_2 to msg_if/registers_15_458
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y48.AQ      Tcko                  0.476   byte_if/rxAvailFall_2
+                                                       byte_if/rxAvailFall_2
+    SLICE_X2Y33.CE       net (fanout=259)      3.423   byte_if/rxAvailFall_2
+    SLICE_X2Y33.CLK      Tceck                 0.314   msg_if/registers_15<459>
+                                                       msg_if/registers_15_458
+    -------------------------------------------------  ---------------------------
+    Total                                      4.213ns (0.790ns logic, 3.423ns route)
+                                                       (18.8% logic, 81.2% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/registers_15_459 (SLICE_X2Y33.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     3.232ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               byte_if/rxAvailFall_2 (FF)
+  Destination:          msg_if/registers_15_459 (FF)
+  Requirement:          7.499ns
+  Data Path Delay:      4.188ns (Levels of Logic = 0)
+  Clock Path Skew:      -0.044ns (0.644 - 0.688)
+  Source Clock:         sysClk_BUFGP falling at 7.500ns
+  Destination Clock:    sysClk_BUFGP rising at 14.999ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: byte_if/rxAvailFall_2 to msg_if/registers_15_459
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y48.AQ      Tcko                  0.476   byte_if/rxAvailFall_2
+                                                       byte_if/rxAvailFall_2
+    SLICE_X2Y33.CE       net (fanout=259)      3.423   byte_if/rxAvailFall_2
+    SLICE_X2Y33.CLK      Tceck                 0.289   msg_if/registers_15<459>
+                                                       msg_if/registers_15_459
+    -------------------------------------------------  ---------------------------
+    Total                                      4.188ns (0.765ns logic, 3.423ns route)
+                                                       (18.3% logic, 81.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/registers_15_499 (SLICE_X5Y31.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     3.274ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               byte_if/rxAvailFall_2 (FF)
+  Destination:          msg_if/registers_15_499 (FF)
+  Requirement:          7.499ns
+  Data Path Delay:      4.135ns (Levels of Logic = 0)
+  Clock Path Skew:      -0.055ns (0.726 - 0.781)
+  Source Clock:         sysClk_BUFGP falling at 7.500ns
+  Destination Clock:    sysClk_BUFGP rising at 14.999ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: byte_if/rxAvailFall_2 to msg_if/registers_15_499
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y48.AQ      Tcko                  0.476   byte_if/rxAvailFall_2
+                                                       byte_if/rxAvailFall_2
+    SLICE_X5Y31.CE       net (fanout=259)      3.251   byte_if/rxAvailFall_2
+    SLICE_X5Y31.CLK      Tceck                 0.408   msg_if/registers_15<499>
+                                                       msg_if/registers_15_499
+    -------------------------------------------------  ---------------------------
+    Total                                      4.135ns (0.884ns logic, 3.251ns route)
+                                                       (21.4% logic, 78.6% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: TS_sysClk = PERIOD TIMEGRP "sysClk" 66.6667 MHz HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/registers_15_236 (SLICE_X10Y38.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.414ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               msg_if/registers_15_236 (FF)
+  Destination:          msg_if/registers_15_236 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.414ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         sysClk_BUFGP rising at 0.000ns
+  Destination Clock:    sysClk_BUFGP rising at 0.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: msg_if/registers_15_236 to msg_if/registers_15_236
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X10Y38.AQ      Tcko                  0.200   msg_if/registers_15<237>
+                                                       msg_if/registers_15_236
+    SLICE_X10Y38.A6      net (fanout=3)        0.024   msg_if/registers_15<236>
+    SLICE_X10Y38.CLK     Tah         (-Th)    -0.190   msg_if/registers_15<237>
+                                                       msg_if/registers_15_236_dpot1
+                                                       msg_if/registers_15_236
+    -------------------------------------------------  ---------------------------
+    Total                                      0.414ns (0.390ns logic, 0.024ns route)
+                                                       (94.2% logic, 5.8% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/registers_15_234 (SLICE_X2Y45.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.416ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               msg_if/registers_15_234 (FF)
+  Destination:          msg_if/registers_15_234 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.416ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         sysClk_BUFGP rising at 0.000ns
+  Destination Clock:    sysClk_BUFGP rising at 0.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: msg_if/registers_15_234 to msg_if/registers_15_234
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y45.AQ       Tcko                  0.200   msg_if/registers_15<235>
+                                                       msg_if/registers_15_234
+    SLICE_X2Y45.A6       net (fanout=3)        0.026   msg_if/registers_15<234>
+    SLICE_X2Y45.CLK      Tah         (-Th)    -0.190   msg_if/registers_15<235>
+                                                       msg_if/registers_15_234_dpot1
+                                                       msg_if/registers_15_234
+    -------------------------------------------------  ---------------------------
+    Total                                      0.416ns (0.390ns logic, 0.026ns route)
+                                                       (93.8% logic, 6.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point msg_if/tx_4 (SLICE_X14Y45.D6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.416ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               msg_if/tx_4 (FF)
+  Destination:          msg_if/tx_4 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.416ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         sysClk_BUFGP rising at 0.000ns
+  Destination Clock:    sysClk_BUFGP rising at 0.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: msg_if/tx_4 to msg_if/tx_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y45.DQ      Tcko                  0.200   msg_if/tx<4>
+                                                       msg_if/tx_4
+    SLICE_X14Y45.D6      net (fanout=2)        0.026   msg_if/tx<4>
+    SLICE_X14Y45.CLK     Tah         (-Th)    -0.190   msg_if/tx<4>
+                                                       msg_if/tx_4_dpot1
+                                                       msg_if/tx_4
+    -------------------------------------------------  ---------------------------
+    Total                                      0.416ns (0.390ns logic, 0.026ns route)
+                                                       (93.8% logic, 6.3% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: TS_sysClk = PERIOD TIMEGRP "sysClk" 66.6667 MHz HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 12.333ns (period - min period limit)
+  Period: 14.999ns
+  Min period limit: 2.666ns (375.094MHz) (Tbcper_I)
+  Physical resource: sysClk_BUFGP/BUFG/I0
+  Logical resource: sysClk_BUFGP/BUFG/I0
+  Location pin: BUFGMUX_X2Y3.I0
+  Clock network: sysClk_BUFGP/IBUFG
+--------------------------------------------------------------------------------
+Slack: 13.600ns (period - min period limit)
+  Period: 14.999ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: byte_if/MOSIr<1>/CLK
+  Logical resource: byte_if/Mshreg_SSr_1/CLK
+  Location pin: SLICE_X16Y47.CLK
+  Clock network: sysClk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 13.600ns (period - min period limit)
+  Period: 14.999ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: byte_if/MOSIr<1>/CLK
+  Logical resource: byte_if/Mshreg_SCLKr_1/CLK
+  Location pin: SLICE_X16Y47.CLK
+  Clock network: sysClk_BUFGP
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock sysClk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+sysClk         |    7.640|    4.292|    1.419|    3.742|
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 10103 paths, 0 nets, and 7482 connections
+
+Design statistics:
+   Minimum period:   8.584ns{1}   (Maximum frequency: 116.496MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Tue Oct 20 15:33:25 2015 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 262 MB
+
+
+

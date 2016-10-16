@@ -1,0 +1,8 @@
+Release 14.7 Drc P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Tue Oct 20 15:33:30 2015
+
+drc -z spi_slave.ncd spi_slave.pcf
+
+DRC detected 0 errors and 0 warnings.
