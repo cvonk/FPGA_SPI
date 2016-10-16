@@ -1,7 +1,13 @@
 `timescale 1ns / 100p
 `default_nettype none
-// (c) 2015, by Coert Vonk
-// http://www.coertvonk.com/technology/logic/fpga-spi-slave-in-verilog-13067/8
+// SPI Message Interface, message interface module
+// Platform: Altera Cyclone IV using Quartus 16.0
+// Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+//
+// GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
+// (c) Copyright 2015, Coert Vonk
+// All rights reserved.  Use of copyright notice does not imply publication.
+// All text above must be included in any redistribution
 
 module spi_msg_if #( parameter nrRWregs = 4,
 	                  parameter nrROregs = 12 )  // total should be <= 15
