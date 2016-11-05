@@ -3,31 +3,31 @@
 // (c) 2015, by Coert Vonk
 // http://www.coertvonk.com/technology/logic/fpga-spi-slave-in-verilog-13067/8 
 
-module spi_slave_tb;  // MODE_3
+module spi_msg_tb;  // MODE_3
 
 	localparam T = 250;   // SPI clock period
-	localparam Tsys = 16; // period to generate a 62.5 MHz system clock
+	localparam Tsys = 20; // period to generate a 50 MHz system clock
 
 	// UUT input and output
-	reg sysClk = 1'b0;
-	reg usrReset;
-	reg SCLK;
-	reg MOSI;
-	reg SS;
+	reg sysClk = 1'b0;  // initialize inputs
+	reg usrResetNot = 1'b1;
+	reg SCLK = 1'b1;
+	reg MOSI = 1'bz;
+	reg SS = 1'b1;
+
 	wire MISO;
 	wire [1:0] LED;
 
-   reg [7:0] misoData, mosiData;
 	reg [7:0] dummy = 8'hxx;
 
    // instantiate Unit Under Test
 	spi_msg uut ( .sysClk   ( sysClk ),
-					  .usrReset ( usrReset ),
+					  .KEY      ( usrResetNot ),
 					  .SCLK     ( SCLK  ), 
 					  .MOSI     ( MOSI ), 
 					  .MISO     ( MISO ), 
 					  .SS       ( SS   ), 
-					  .LED      ( LED ));
+					  .LED      ( LED ) );
 
    // simulate system clock 
    always 
@@ -35,17 +35,10 @@ module spi_slave_tb;  // MODE_3
 		   #(Tsys/2) sysClk = ~sysClk;
 
 	reg [7:0] status;
-	reg [31:0] valueWritten, valueRead;
 
 	// test script				 
 	initial
 		begin
-			sysClk = 1'b0;  // initialize inputs
-			usrReset = 1'b0;
-			SCLK = 1'b1;
-			MOSI = 1'bz;
-			SS = 1'b1;
-
 			#100;  // wait 100 ns for global reset to finish
 			#10 SS = 1'b0;  // activate slave-select
 
@@ -57,13 +50,14 @@ module spi_slave_tb;  // MODE_3
 			read_verify_register( 4, 32'hDEADBEEF );
 
 			#100
-			read_verify_register( 5, 32'h76543210 + 32'h01234567 );
-			read_verify_register( 6, 32'h76543210 - 32'h01234567 );
+			read_verify_register( 5, 32'h00000000 );
+			read_verify_register( 6, 32'h00000000 );
 
 			#10 SS = 1'b1;   // de-activate slave-select
 			MOSI = 1'bz;
 			
 			$display("EOT");
+			$stop;
 		end
 
 	task exchange_byte ( input [7:0] mosiData,

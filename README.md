@@ -1,5 +1,5 @@
-# fpga-arduino-spi
-## Math Talk
+# Math Talk
+## FPGA-Arduino interface using SPI
 
 ![Image](media/spi-logo-mathtalk-small.jpg)
 

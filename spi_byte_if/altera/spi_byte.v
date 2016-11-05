@@ -11,7 +11,7 @@
 
 // for SPI MODE 3
 module spi_byte( input wire sysClk,       // FPGA system clock (must be several times faster as SCLK, e.g. 50MHz)
-                 input wire [0:0] KEY,    // FPGA user reset button
+                 input wire [0:0] KEY,    // FPGA user reset button (active low)
 					  input wire SCLK,         // SPI clock (e.g. 4 MHz)
 					  input wire MOSI,         // SPI master out, slave in
 					  output wire MISO,        // SPI slave in, master out
@@ -36,5 +36,5 @@ module spi_byte( input wire sysClk,       // FPGA system clock (must be several 
 	always @(posedge sysClk)
 	   if (rxValid )
 		   LED[0] <= ( rx == 8'hAA );
-
+			
 endmodule

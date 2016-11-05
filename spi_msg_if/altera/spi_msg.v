@@ -55,7 +55,7 @@ module spi_msg #( parameter nrRWregs = 4,
 			begin :nnRW
 				assign registers[nn] = rwRegs1D[32*nn+31:32*nn];
 			end
-			for ( nn = 0; nn < nrROregs; nn = nn + 1 )	
+		for ( nn = 0; nn < nrROregs; nn = nn + 1 )	
 			begin :nnRO
 				assign roRegs1D[32*nn+31:32*nn] = registers[nn+nrRWregs];
 			end

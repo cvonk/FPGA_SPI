@@ -52,13 +52,10 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_NETLIST_WRITER_OUTPUT_DIR simulation/modelsim -section_id eda_simulation
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name VERILOG_FILE "spi_byte.v"
-set_global_assignment -name VERILOG_FILE "spi_byte_if.v"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name BLOCK_DESIGN_NAMING QUARTUSII
 set_global_assignment -name PARALLEL_SYNTHESIS OFF
-set_global_assignment -name CDF_FILE "spi_byte.cdf"
 set_location_assignment PIN_C3 -to SS
 set_location_assignment PIN_A3 -to MOSI
 set_location_assignment PIN_B4 -to MISO
@@ -76,4 +73,16 @@ set_location_assignment PIN_A15 -to LED[0]
 set_location_assignment PIN_J15 -to KEY[0]
 set_instance_assignment -name IO_STANDARD "3.0-V LVTTL" -to KEY[0]
 set_instance_assignment -name IO_STANDARD "3.0-V LVTTL" -to LED[0]
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "Timing test bench" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME "Timing test bench" -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "Timing test bench"
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME spi_byte_tb -section_id "Timing test bench"
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY ON -section_id eda_simulation
+set_global_assignment -name VERILOG_FILE spi_byte_tb.v
+set_global_assignment -name VERILOG_FILE spi_byte.v
+set_global_assignment -name VERILOG_FILE spi_byte_if.v
+set_global_assignment -name CDF_FILE spi_byte.cdf
+set_global_assignment -name EDA_TEST_BENCH_FILE spi_byte_tb.v -section_id "Timing test bench"
+set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/spi_byte.vo -section_id "Timing test bench"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

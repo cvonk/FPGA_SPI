@@ -1,22 +1,22 @@
 /**
-* @brief SPI master for msg example, communicates with FPGA over SPI interface
-* @file  arduino-spi_msg.ino
-* Platform: Arduino 101 or 3.3 Volt Arduino UNO R3 using Arduino IDE
-* Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
-*
-* GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
-* (c) Copyright 2015-2016, Coert Vonk
-* All rights reserved.  Use of copyright notice does not imply publication.
-* All text above must be included in any redistribution
-*
-*           Arduino   Xilinx    Altera
-*                     FPGA J#4  GPIO_0
-* ssFPGA    10        J4 P1     JP1 P4
-* MOSI      11        J4 P2     JP1 P6
-* MISO      12        J4 P3     JP1 P8
-* SCK       13        J4 P4     JP1 P10
-* GND       GND       J4 P5     JP1 P12
-**/
+ * @brief SPI master for msg example, communicates with FPGA over SPI interface
+ * @file  arduino-spi_msg.ino
+ * Platform: Arduino 101 or 3.3 Volt Arduino UNO R3 using Arduino IDE
+ * Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+ *
+ * GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
+ * (c) Copyright 2015-2016, Coert Vonk
+ * All rights reserved.  Use of copyright notice does not imply publication.
+ * All text above must be included in any redistribution
+ *
+ *           Arduino   Xilinx    Altera
+ *                     FPGA J#4  GPIO_0
+ * ssFPGA    10        J4#1      JP1#4
+ * MOSI      11        J4#2      JP1#6
+ * MISO      12        J4#3      JP1#8
+ * SCK       13        J4#4      JP1#10
+ * GND       GND       J4#5      JP1#12
+ **/
 
 #include <Arduino.h>
 #include <SPI.h>

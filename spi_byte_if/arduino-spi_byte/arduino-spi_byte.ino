@@ -11,11 +11,11 @@
  * 
  *           Arduino   Xilinx    Altera
  *                     FPGA J#4  GPIO_0
- * ssFPGA    10        J4 P1     JP1 P4
- * MOSI      11        J4 P2     JP1 P6
- * MISO      12        J4 P3     JP1 P8
- * SCK       13        J4 P4     JP1 P10
- * GND       GND       J4 P5     JP1 P12
+ * ssFPGA    10        J4#1      JP1#4
+ * MOSI      11        J4#2      JP1#6
+ * MISO      12        J4#3      JP1#8
+ * SCK       13        J4#4      JP1#10
+ * GND       GND       J4#5      JP1#12
  **/
 
 #include <SPI.h>
@@ -37,7 +37,7 @@ void loop()
 {
     digitalWrite( ssFPGA, 0 );
     for ( uint8_t ii = 0; ii < 10; ii++) {
-        delay( 50 );
+        delay( 10 );
         SPI.beginTransaction( SPISettings( 4000000, MSBFIRST, SPI_MODE3 ) );
         {
             uint8_t const miso = SPI.transfer(ii == 0 ? 0xAA : 0x55 );
