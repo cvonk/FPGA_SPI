@@ -1,4 +1,4 @@
-`timescale 1ns / 100ps
+`timescale 1ns / 1ps
 `default_nettype none
 // (c) 2015, by Coert Vonk
 // http://www.coertvonk.com/technology/logic/fpga-spi-slave-in-verilog-13067/8 
@@ -9,37 +9,45 @@ module spi_msg_tb;  // MODE_3
 	localparam Tsys = 20; // period to generate a 50 MHz system clock
 
 	// UUT input and output
-	reg sysClk = 1'b0;  // initialize inputs
-	reg usrResetNot = 1'b1;
+	reg clk50MHz = 1'b0;  // initialize inputs
 	reg SCLK = 1'b1;
 	reg MOSI = 1'bz;
 	reg SS = 1'b1;
 
 	wire MISO;
 	wire [1:0] LED;
-
 	reg [7:0] dummy = 8'hxx;
+	wire [31:0] register0, register1;
+	wire [7:0] rx, tx;
+	wire clk200MHz, clkLocked;
 
    // instantiate Unit Under Test
-	spi_msg uut ( .sysClk   ( sysClk ),
-					  .KEY      ( usrResetNot ),
-					  .SCLK     ( SCLK  ), 
-					  .MOSI     ( MOSI ), 
-					  .MISO     ( MISO ), 
-					  .SS       ( SS   ), 
-					  .LED      ( LED ) );
-
+	spi_msg uut ( .clk50MHz  ( clk50MHz ),
+								.SCLK      ( SCLK  ), 
+								.MOSI      ( MOSI ), 
+								.MISO      ( MISO ), 
+								.SS        ( SS   ), 
+								.LED       ( LED ),
+								.clkLocked ( clkLocked ),
+								.clk200MHz ( clk200MHz ),
+								.rx        ( rx ),
+								.tx        ( tx ),
+								.register0 ( register0 ),
+								.register1 ( register1 ) );
+								
    // simulate system clock 
    always 
 	   forever 
-		   #(Tsys/2) sysClk = ~sysClk;
+		   #(Tsys/2) clk50MHz = ~clk50MHz;
 
 	reg [7:0] status;
 
 	// test script				 
 	initial
 		begin
-			#100;  // wait 100 ns for global reset to finish
+		   @(posedge clkLocked)  // wait for PLL lock
+				;
+				
 			#10 SS = 1'b0;  // activate slave-select
 
 			read_status( status ); $display( "status %h", status );

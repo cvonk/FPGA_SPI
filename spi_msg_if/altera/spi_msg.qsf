@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE EP4CE22F17C6
 set_global_assignment -name TOP_LEVEL_ENTITY spi_msg
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:32:00  OCTOBER 15, 2016"
-set_global_assignment -name LAST_QUARTUS_VERSION 16.0.2
+set_global_assignment -name LAST_QUARTUS_VERSION "16.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -59,7 +59,6 @@ set_location_assignment PIN_C3 -to SS
 set_location_assignment PIN_A3 -to MOSI
 set_location_assignment PIN_B4 -to MISO
 set_location_assignment PIN_B5 -to SCLK
-set_location_assignment PIN_R8 -to sysClk
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -67,23 +66,28 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SS
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to MOSI
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to MISO
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SCLK
-set_instance_assignment -name IO_STANDARD "3.0-V LVTTL" -to sysClk
 set_location_assignment PIN_A15 -to LED[0]
 set_location_assignment PIN_A13 -to LED[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[0]
-set_location_assignment PIN_J15 -to KEY[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "Timing test bench" -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME "Timing test bench" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "Timing test bench"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME spi_msg_tb -section_id "Timing test bench"
-set_global_assignment -name VERILOG_FILE spi_msg_tb.v
-set_global_assignment -name VERILOG_FILE spi_msg_if.v
-set_global_assignment -name VERILOG_FILE spi_msg.v
-set_global_assignment -name VERILOG_FILE spi_byte_if.v
-set_global_assignment -name CDF_FILE spi_msg.cdf
 set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/spi_msg.vo -section_id "Timing test bench"
 set_global_assignment -name EDA_TEST_BENCH_FILE spi_msg_tb.v -section_id "Timing test bench"
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 2
+set_global_assignment -name VERILOG_FILE pll.v
+set_global_assignment -name VERILOG_FILE spi_byte_if.v
+set_global_assignment -name SYSTEMVERILOG_FILE spi_msg_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE spi_msg.sv
+set_global_assignment -name VERILOG_FILE spi_msg_tb.v
+set_global_assignment -name CDF_FILE spi_msg.cdf
+set_global_assignment -name QIP_FILE spi_pll.qip
+set_location_assignment PIN_R8 -to clk50MHz
+set_location_assignment PIN_D3 -to clkLocked
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk50MHz
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clkLocked
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
