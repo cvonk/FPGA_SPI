@@ -1,7 +1,14 @@
+// SPI Message Interface, test bench
+// Platform: Altera Cyclone IV using Quartus 16.1
+// Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+//
+// GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
+// (c) Copyright 2015-2016, Coert Vonk
+// All rights reserved.  Use of copyright notice does not imply publication.
+// All text above must be included in any redistribution
+
 `timescale 1ns / 1ps
 `default_nettype none
-// (c) 2015, by Coert Vonk
-// http://www.coertvonk.com/technology/logic/fpga-spi-slave-in-verilog-13067/8 
 
 module spi_msg_tb;  // MODE_3
 

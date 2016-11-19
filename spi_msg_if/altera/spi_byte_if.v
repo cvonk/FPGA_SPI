@@ -1,4 +1,4 @@
-// SPI Byte Interface, byte interface module
+// SPI Message Interface, byte interface module
 // Platform: Altera Cyclone IV using Quartus 16.1
 // Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
 // Inspired by: http://fpga4fun.com/SPI2.html
@@ -14,14 +14,14 @@
 // for SPI MODE 3
 module spi_byte_if( input wire sysClk,      // internal FPGA clock
                     input wire SCLK,        // SPI clock
-									  input wire MOSI,        // SPI master out, slave in
-									  output wire MISO,       // SPI slave in, master out
-									  input wire SS,          // SPI slave select
-									  input wire [7:0] tx,    // BYTE to transmit
-									  output wire [7:0] rx,   // BYTE received
-									  output wire rxValid );  // BYTE received is valid
+						  input wire MOSI,        // SPI master out, slave in
+						  output wire MISO,       // SPI slave in, master out
+						  input wire SS,          // SPI slave select
+						  input wire [7:0] tx,    // BYTE to transmit
+						  output wire [7:0] rx,   // BYTE received
+						  output wire rxValid );  // BYTE received is valid
 
-  // Synchronize SCLK to FPGA domain clock using a two-stage shift-register,
+	// Synchronize SCLK to FPGA domain clock using a two-stage shift-register,
 	//   where bit [0] takes the hit of timing errors.
 	// For SCLK and SS a third stage is used to detect rising/falling
 	reg [2:0] SCLK_r;  always @(posedge sysClk) SCLK_r <= { SCLK_r[1:0], SCLK };
@@ -33,12 +33,12 @@ module spi_byte_if( input wire sysClk,      // internal FPGA clock
 	wire SS_active    = ~SS_r[1];   // synchronous version of ~SS input
 	wire MOSI_sync    = MOSI_r[1];  // synchronous version of MOSI input
 
-  // circular buffer, initialized with data to be transmitted	
+	// circular buffer, initialized with data to be transmitted	
 	// - on SCLK_falling, bit [7] is transmitted by through MISO_r
 	// - on SCLK_rising, MOSI_sync is shifted in as bit [0]
 	// see http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067/3#operation
 
-  reg [7:0] buffer = 8'hxx;
+	reg [7:0] buffer = 8'hxx;
 
 	// current state logic
 
@@ -55,15 +55,15 @@ module spi_byte_if( input wire sysClk,      // internal FPGA clock
 
 	// input/output logic
 	
-  assign rx      = {buffer[6:0], MOSI_sync};       // bits received so far
+	assign rx      = {buffer[6:0], MOSI_sync};       // bits received so far
 	assign rxValid = (state == 3'd7) && SCLK_rising; // BYTE received is valid
 
 	reg MISO_r = 1'bx;	
 	assign MISO = SS_active ? MISO_r : 1'bz;
 	
 	always @(posedge sysClk)
-    if( SS_active )
-		  begin
+		if( SS_active )
+			begin
 			
 				if( SCLK_rising )         // INPUT on rising SPI clock edge
 					if( state != 3'd7 ) 
@@ -78,6 +78,6 @@ module spi_byte_if( input wire sysClk,      // internal FPGA clock
 					else
 						MISO_r <= buffer[7];  //   send next bit
 
-      end
+			end
 						
 endmodule

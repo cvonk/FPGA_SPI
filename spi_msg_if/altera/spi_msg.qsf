@@ -79,6 +79,11 @@ set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/spi_msg.vo -
 set_global_assignment -name EDA_TEST_BENCH_FILE spi_msg_tb.v -section_id "Timing test bench"
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS 2
+set_location_assignment PIN_R8 -to clk50MHz
+set_location_assignment PIN_D3 -to clkLocked
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk50MHz
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clkLocked
+set_global_assignment -name SDC_FILE spi_msg.sdc
 set_global_assignment -name VERILOG_FILE pll.v
 set_global_assignment -name VERILOG_FILE spi_byte_if.v
 set_global_assignment -name SYSTEMVERILOG_FILE spi_msg_if.sv
@@ -86,8 +91,4 @@ set_global_assignment -name SYSTEMVERILOG_FILE spi_msg.sv
 set_global_assignment -name VERILOG_FILE spi_msg_tb.v
 set_global_assignment -name CDF_FILE spi_msg.cdf
 set_global_assignment -name QIP_FILE spi_pll.qip
-set_location_assignment PIN_R8 -to clk50MHz
-set_location_assignment PIN_D3 -to clkLocked
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk50MHz
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clkLocked
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
