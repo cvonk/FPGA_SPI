@@ -1,135 +1,83 @@
-`timescale 1ns / 100ps
-`default_nettype none
-// SPI Message Interface, byte interface module
-// Platform: Altera Cyclone IV using Quartus 16.0
+// SPI Byte Interface, byte interface module
+// Platform: Altera Cyclone IV using Quartus 16.1
 // Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+// Inspired by: http://fpga4fun.com/SPI2.html
 //
 // GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
-// (c) Copyright 2015, Coert Vonk
+// (c) Copyright 2015-2016, Coert Vonk
 // All rights reserved.  Use of copyright notice does not imply publication.
 // All text above must be included in any redistribution
- 
+
+`timescale 1ns / 1ps
+`default_nettype none
+
 // for SPI MODE 3
-module spi_byte_if( input wire sysClk,
-                    input wire usrReset,
+module spi_byte_if( input wire sysClk,      // internal FPGA clock
                     input wire SCLK,        // SPI clock
-                    input wire MOSI,        // SPI master out, slave in
-                    output wire MISO,       // SPI slave in, master out
-                    input wire SS,          // SPI slave select
-                    output wire rxValid,    // BYTE received is valid
-                    output reg [7:0] rx,    // BYTE received
-                    input wire [7:0] tx );  // BYTE to transmit
- 
-   // synchronize SCLK to FPGA domain clock using a two-stage shift-register
-   // (bit [0] takes the hit of timing errors)
-   reg [2:0] SCLKr;  always @(posedge sysClk) SCLKr <= { SCLKr[1:0], SCLK };
-   reg [1:0] SSr;  always @(posedge sysClk) SSr <= { SSr[0], SS };
-   reg [1:0] MOSIr;  always @(posedge sysClk) MOSIr <= { MOSIr[0], MOSI };
-   wire SCLK_rising  = ( SCLKr[2:1] == 2'b01 );
-   wire SCLK_falling = ( SCLKr[2:1] == 2'b10 );
-   wire SS_active  = ~SSr[1];  // synchronous version of ~SS input
-   wire MOSI_s = MOSIr[1];     // synchronous version of MOSI input
- 
-   // next state logic
- 
-   reg [2:0] state;  // state corresponds to bit count
-   localparam [2:0] STATE_WAIT4BIT7 = 3'd0,
-		              STATE_WAIT4BIT6 = 3'd1,
-		              STATE_WAIT4BIT5 = 3'd2,
-		              STATE_WAIT4BIT4 = 3'd3,
-		              STATE_WAIT4BIT3 = 3'd4,
-		              STATE_WAIT4BIT2 = 3'd5,
-		              STATE_WAIT4BIT1 = 3'd6,
-		              STATE_WAIT4BIT0 = 3'd7;
- 
-	reg [2:0] nState;
+									  input wire MOSI,        // SPI master out, slave in
+									  output wire MISO,       // SPI slave in, master out
+									  input wire SS,          // SPI slave select
+									  input wire [7:0] tx,    // BYTE to transmit
+									  output wire [7:0] rx,   // BYTE received
+									  output wire rxValid );  // BYTE received is valid
+
+  // Synchronize SCLK to FPGA domain clock using a two-stage shift-register,
+	//   where bit [0] takes the hit of timing errors.
+	// For SCLK and SS a third stage is used to detect rising/falling
+	reg [2:0] SCLK_r;  always @(posedge sysClk) SCLK_r <= { SCLK_r[1:0], SCLK };
+	reg [2:0] SS_r;    always @(posedge sysClk) SS_r   <= {   SS_r[1:0],   SS };
+	reg [1:0] MOSI_r;  always @(posedge sysClk) MOSI_r <= {   MOSI_r[0], MOSI };
+	wire SCLK_rising  = ( SCLK_r[2:1] == 2'b01 );
+	wire SCLK_falling = ( SCLK_r[2:1] == 2'b10 );
+	wire SS_falling   = ( SS_r[2:1] == 2'b10 );
+	wire SS_active    = ~SS_r[1];   // synchronous version of ~SS input
+	wire MOSI_sync    = MOSI_r[1];  // synchronous version of MOSI input
+
+  // circular buffer, initialized with data to be transmitted	
+	// - on SCLK_falling, bit [7] is transmitted by through MISO_r
+	// - on SCLK_rising, MOSI_sync is shifted in as bit [0]
+	// see http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067/3#operation
+
+  reg [7:0] buffer = 8'hxx;
+
+	// current state logic
+
+	reg [2:0] state = 3'bxxx; // state corresponds to bit count
 	
-	// control path, next state logic
-	
-	always @(*)
-		if (SS_active)
-			if (SCLK_rising)
-				nState = state + 3'd1;
-			else
-				nState = state;
-		else
-			nState = STATE_WAIT4BIT7;
-
-
-   // control path, current state logic
- 
-   always @(posedge sysClk or posedge usrReset)
-      if( usrReset )
-         state <= STATE_WAIT4BIT7;
-      else
-         state <= nState;
-          
-   // data path
-
-   reg [7:0] data = 8'hxx, nData;
-   reg rxAvail = 1'b0, nRxAvail;
-	reg [7:0] nRx;
-   reg MISOr = 1'bx, nMISOr;
-	
-   // data path, next state logic
-
-	wire [7:0] rx_next = {data[6:0], MOSI_s};	
-   always @(*)
-		begin
-			nData = data;  // assume all stays the same unless noted
-			nRx = rx;
-			nRxAvail = rxAvail;
-			nMISOr = MISOr;
-		
-			if ( SS_active )
-				if ( SCLK_rising )  // input on rising PCI clock edge
-					begin
-						nData = rx_next;
-						if ( state == STATE_WAIT4BIT0 ) 
-							begin
-								nRx = rx_next;  // grab data received
-								nRxAvail = 1'b1;
-							end
-						else
-							nRxAvail = 1'b0;
-					end
-				else if ( SCLK_falling)  // output on falling PCI clock edge
-					begin
-						if ( state == STATE_WAIT4BIT7 )
-							begin
-								nData = tx;  // get data to transmit
-								nMISOr = tx[7];
-							end
-						else
-							nMISOr = data[7];
-					end
-		end
-				
-   // data path, current state logic
-
-   always @(posedge sysClk or posedge usrReset)
-      if ( usrReset )
-         begin
-            rx <= 8'hxx;
-            rxAvail <= 1'b0;
-				data <= 8'hxx;
-				MISOr <= 1'bx;
-         end
-      else
+	always @(posedge sysClk)
+		if ( SS_active )
 			begin
-				rx <= nRx;
-				rxAvail <= nRxAvail;
-				data <= nData;
-				MISOr <= nMISOr;
+				if ( SS_falling )   // start of 1st byte
+					state <= 3'd0;
+				if ( SCLK_rising )  // input bit available
+					state <= state + 3'd1;
 			end
- 
-   // data path, output logic
 
-   assign MISO = SS_active ? MISOr : 1'bz;  // send MSB first
-   reg rxAvailFall;  // make rxAvail change on the falling edge
-   reg rxAvailFall_dly;  // make it 1 cycle wide
-   always @(negedge sysClk) rxAvailFall <= rxAvail;
-   always @(negedge sysClk) rxAvailFall_dly <= rxAvailFall;
-   assign rxValid = rxAvailFall & ~rxAvailFall_dly;
- 
+	// input/output logic
+	
+  assign rx      = {buffer[6:0], MOSI_sync};       // bits received so far
+	assign rxValid = (state == 3'd7) && SCLK_rising; // BYTE received is valid
+
+	reg MISO_r = 1'bx;	
+	assign MISO = SS_active ? MISO_r : 1'bz;
+	
+	always @(posedge sysClk)
+    if( SS_active )
+		  begin
+			
+				if( SCLK_rising )         // INPUT on rising SPI clock edge
+					if( state != 3'd7 ) 
+						buffer <= rx;
+								
+				if( SCLK_falling)         // OUTPUT on falling SPI clock edge
+					if ( state == 3'b000 )
+						begin 
+							MISO_r <= tx[7];    //   start by sending the MSb
+							buffer <= tx;       //   remaining bits are send from buffer
+						end
+					else
+						MISO_r <= buffer[7];  //   send next bit
+
+      end
+						
 endmodule
