@@ -20,7 +20,7 @@
 ## PROGRAM "Quartus Prime"
 ## VERSION "Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition"
 
-## DATE    "Thu Nov 17 22:48:54 2016"
+## DATE    "Sat Nov 19 20:21:30 2016"
 
 ##
 ## DEVICE  "EP4CE22F17C6"
@@ -87,6 +87,9 @@ set_clock_uncertainty -fall_from [get_clocks {pll|altpll_component|auto_generate
 # Set False Path
 #**************************************************************
 
+set_false_path -from [get_ports {MOSI SCLK SS}] 
+set_false_path -to [get_ports {MISO}]
+set_false_path -to [get_ports {LED[*]}]
 
 
 #**************************************************************
