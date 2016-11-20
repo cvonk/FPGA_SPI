@@ -20,27 +20,19 @@ module spi_msg_tb;  // MODE_3
 	reg SCLK = 1'b1;
 	reg MOSI = 1'bz;
 	reg SS = 1'b1;
-
 	wire MISO;
 	wire [1:0] LED;
 	reg [7:0] dummy = 8'hxx;
-	wire [31:0] register0, register1;
-	wire [7:0] rx, tx;
-	wire clk200MHz, clkLocked;
+	wire clkLocked;
 
    // instantiate Unit Under Test
 	spi_msg uut ( .clk50MHz  ( clk50MHz ),
-								.SCLK      ( SCLK  ), 
-								.MOSI      ( MOSI ), 
-								.MISO      ( MISO ), 
-								.SS        ( SS   ), 
-								.LED       ( LED ),
-								.clkLocked ( clkLocked ),
-								.clk200MHz ( clk200MHz ),
-								.rx        ( rx ),
-								.tx        ( tx ),
-								.register0 ( register0 ),
-								.register1 ( register1 ) );
+					  .SCLK      ( SCLK  ), 
+					  .MOSI      ( MOSI ), 
+					  .MISO      ( MISO ), 
+					  .SS        ( SS   ), 
+					  .LED       ( LED ),
+					  .clkLocked ( clkLocked ) );
 								
    // simulate system clock 
    always 

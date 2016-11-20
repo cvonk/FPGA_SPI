@@ -19,21 +19,14 @@ module spi_msg #( parameter NR_RWREGS = 4,   // number of read/write registers
 						output wire MISO,          // SPI slave in, master out
 						input wire SS,             // SPI slave select
 						output wire [1:0] LED,
-						output wire clkLocked,
-						  // debug
-						output wire clk200MHz,
-						output wire [7:0] rx,
-						output wire [7:0] tx,
-						output wire [31:0] register0,
-						output wire [31:0] register1 );
-
-						 
-	// derive 200 MHz clock from 50 MHz sysClk
-	//wire clk200Mhz;
+						output wire clkLocked );
+						
+	// derive 200 MHz clock from 50 MHz external clock
+	wire clk200MHz;
 	pll pll( clk50MHz, clk200MHz, clkLocked );
 	
 	wire rxValid;
-	//wire [7:0] tx;	// rx
+	wire [7:0] rx, tx;
 	wire [NR_RWREGS+NR_ROREGS-1:0] [31:0] registers; // registers are defined in spi_msg_if, 'cause output of that module can only connect to a net, not a register
 	wire [NR_RWREGS-1:0] wrRegs;
 
@@ -69,7 +62,4 @@ module spi_msg #( parameter NR_RWREGS = 4,   // number of read/write registers
 	// turn LEDs on when expected value has been written to register
 	assign LED[0] = (registers[0] == 32'h76543210 );
 	assign LED[1] = (registers[1] == 32'h01234567 );
-	
-	assign register0 = registers[0];
-	assign register1 = registers[1];	
 endmodule
