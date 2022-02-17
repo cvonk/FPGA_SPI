@@ -1,9 +1,17 @@
 // SPI Message Interface, top level module
-// Platform: Altera Cyclone IV using Quartus 16.1
-// Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+// Platform: Altera Cyclone IV using Quartus 21.1 (>=16.1)
+// Documentation: https://coertvonk.com/hw/math-talk/messages-exchange-with-fpga-as-slave-30825
+//
+// Implements SPII messaging protocol with Arduino (https://coertvonk.com/hw/math-talk/message-exchange-protocol-30820)
+//   - Implements the commands STATUS, RDREG, WRREG
+//   - Implements 4 read/write and 12 read-only registers, numbered 0 .. 16
+//   - When the read/write registers[0] receives 0x76543210 it turns LED[0] on.
+//   - When the read/write registers[1] receives 0x01234567 it turns LED[1] on.
+//   - For read-only register[4] it always returns the value 0xDEADBEEF.
+//   - The other read-only register register[4] .. [15], it always returns 0x00000000.
 //
 // GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
-// (c) Copyright 2015-2016, Coert Vonk
+// (c) Copyright 2015-2022, Coert Vonk
 // All rights reserved.  Use of copyright notice does not imply publication.
 // All text above must be included in any redistribution
 

@@ -34,10 +34,10 @@ module spi_msg_if #( parameter NR_RWREGS = 4,   // number of read/write register
 						  CMD_WRREG   = 8'b1100xxxx,
 						  CMD_ANY     = 8'bxxxxxxxx;
 			
-  localparam [3:0] STATE_IDLE     = 4'd0,
-						 STATE_TXSTATUS = 4'd1,
-						 STATE_TXREGVAL = 4'd2,
-						 STATE_RXREGVAL = 4'd3;
+    localparam [3:0] STATE_IDLE     = 4'd0,
+						   STATE_TXSTATUS = 4'd1,
+						   STATE_TXREGVAL = 4'd2,
+					 	   STATE_RXREGVAL = 4'd3;
 
 	reg [3:0] state = STATE_IDLE, nState; // current and next state
 	reg [3:0] regId = 4'bxxxx, nRegId;    // current and next register index

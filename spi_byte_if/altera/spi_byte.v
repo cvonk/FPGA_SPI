@@ -1,9 +1,16 @@
 // SPI Byte Interface, top level module
-// Platform: Altera Cyclone IV using Quartus 16.1
-// Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+// Platform: Altera Cyclone IV using Quartus 21.1 (>=16.1)
+// Documentation: https://coertvonk.com/hw/math-talk/byte-exchange-with-a-fpga-as-slave-30818
+//
+// Demonstrates byte exchange with Arduino where FPGA is the SPI slave
+//   - The Arduino sends an alternating pattern of 0xAA and 0x55 to the FPGA.
+//   - On the FPGA, LED[0] will be on when it receives 0xAA.  Consequentially it will blink with 10% duty cycle.
+//   - The FPGA always returns 0x55, what is displayed on the serial port.
+//   
+// The protocol is specified at https://coertvonk.com/hw/math-talk/bytes-exchange-protocol-30814
 //
 // GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
-// (c) Copyright 2015-2016, Coert Vonk
+// (c) Copyright 2015-2022, Coert Vonk
 // All rights reserved.  Use of copyright notice does not imply publication.
 // All text above must be included in any redistribution
 
@@ -38,7 +45,7 @@ module spi_byte( input wire clk50Mhz,     // external FPGA system clock (e.g. 50
 								.rx      (rx),
 								.rxValid (rxValid) );
 
-// byte received controls a LED (on when expected byte was received)
+   // byte received controls a LED (on when expected byte was received)
 
 	always @(posedge clk200MHz)
 	   if (rxValid )
