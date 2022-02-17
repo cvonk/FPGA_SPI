@@ -2,13 +2,21 @@
  * @brief SPI master for msg example, communicates with FPGA over SPI interface
  * @file  arduino-spi_msg.ino
  * Platform: Arduino 101 or 3.3 Volt Arduino UNO R3 using Arduino IDE
- * Documentation: http://www.coertvonk.com/technology/logic/connecting-fpga-and-arduino-using-spi-13067
+ * Documentation: https://coertvonk.com/hw/math-talk/messages-exchange-with-arduino-as-master-30822
  *
- * GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
- * (c) Copyright 2015-2016, Coert Vonk
- * All rights reserved.  Use of copyright notice does not imply publication.
- * All text above must be included in any redistribution
- *
+ * Demonstrates message exchange FPGA where Arduino is the SPI master
+ *   - Waits for the serial port to be connected (115200 baud)
+ *   - Tests reading status from FPGA
+ *     - Sends a STATUS request, and expects 0x5A back.
+ *   - Tests writing read/write register on FPGA
+ *     - Sends a WRREG request to write 0x76543210 to register[0].
+ *     - Sends a RDREG request for register[0] and expects 0x76543210 back.
+ *     - Sends a WRREG request to write 0x to register[0].
+ *     - Sends a RDREG request for register[0] and expects 0x76543210 back.
+ *   - Test reading read-only register on FPGA
+ *     - Sends a RDREG request for register[4] and expects 0xDEADBEEF back.
+ * The protocol is specified at https://coertvonk.com/hw/math-talk/message-exchange-protocol-30820
+ * 
  *           Arduino   Xilinx    Altera
  *                     FPGA J#4  GPIO_0
  * ssFPGA    10        J4#1      JP1#4
@@ -16,14 +24,21 @@
  * MISO      12        J4#3      JP1#8
  * SCK       13        J4#4      JP1#10
  * GND       GND       J4#5      JP1#12
+ * 
+ * Tested versions:
+ *   - Arduino IDE 1.8.19
+ *   - Intel Curie Boards support package 2.0.5
+ *
+ * GNU GENERAL PUBLIC LICENSE Version 3, check the file LICENSE for more information
+ * (c) Copyright 2015-2022, Coert Vonk
+ * All rights reserved.  Use of copyright notice does not imply publication.
+ * All text above must be included in any redistribution
  **/
 
 #include <Arduino.h>
 #include <SPI.h>
 
-typedef enum {
-    IO_SSFPGA = 10
-};
+uint8_t const IO_SSFPGA = 10;
 
 uint8_t exchange_byte( uint8_t const value )
 {
@@ -108,34 +123,36 @@ uint32_t read_verify_register( uint8_t const regNr, uint32_t const expected )
 
 void setup()
 {
-    Serial.begin( 115200 );
-	while (!Serial) {
-		; // wait
-	}
-	Serial.println("spi_msg");
-	SPI.begin();
     pinMode( IO_SSFPGA, OUTPUT );
+    digitalWrite(IO_SSFPGA, 1);
+    SPI.begin();
+    
+    Serial.begin( 115200 );
+    while (!Serial) {
+		    ; // wait
+	  }
+    Serial.println("spi_msg");
 }
 
 void loop()
 {
-	digitalWrite(IO_SSFPGA, 0);
-	SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE3));
-	{
-		read_verify_status(0x5A);
+	  digitalWrite(IO_SSFPGA, 0);
+	  SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE3));
+	  {
+		    read_verify_status(0x5A);
 
-		uint32_t const reg0 = 0x76543210;
-		uint32_t const reg1 = 0x01234567;
-		write_verify_register(0, reg0);
-		write_verify_register(1, reg1);
+		    uint32_t const reg0 = 0x76543210;
+		    uint32_t const reg1 = 0x01234567;
+		    write_verify_register(0, reg0);
+		    write_verify_register(1, reg1);
 
-		read_verify_register(4, 0xDEADBEEF);
-	}
-	SPI.endTransaction();
-	digitalWrite(IO_SSFPGA, 1);
+		    read_verify_register(4, 0xDEADBEEF);
+	  }
+	  SPI.endTransaction();
+	  digitalWrite(IO_SSFPGA, 1);
 
-	static int ii = 0;
-	if (++ii % 1024 == 0) {
-		Serial.print(".");  // show a sign of life
-	}
+	  static int ii = 0;
+	  if (++ii % 1024 == 0) {
+  		  Serial.print(".");  // show a sign of life
+  	}
 }
