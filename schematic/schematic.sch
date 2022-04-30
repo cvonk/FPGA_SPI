@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -853,35 +854,6 @@ More EAGLE documentation at: http://www.element14.com/community/community/knode/
 <text x="0" y="-2.54" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
 <pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
-<symbol name="FRAME_LETTER_L">
-<frame x1="0" y1="0" x2="248.92" y2="185.42" columns="12" rows="17" layer="94" border-left="no" border-top="no" border-right="no" border-bottom="no"/>
-</symbol>
-<symbol name="FRAME_DOCFIELD">
-<wire x1="0" y1="0" x2="55.88" y2="0" width="0.1016" layer="94"/>
-<wire x1="101.6" y1="20.32" x2="55.88" y2="20.32" width="0.1016" layer="94"/>
-<wire x1="101.6" y1="20.32" x2="101.6" y2="15.24" width="0.1016" layer="94"/>
-<wire x1="101.6" y1="15.24" x2="101.6" y2="10.16" width="0.1016" layer="94"/>
-<wire x1="101.6" y1="10.16" x2="101.6" y2="5.08" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="5.08" x2="55.88" y2="0" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="0" x2="101.6" y2="0" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="20.32" x2="55.88" y2="15.24" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="15.24" x2="55.88" y2="10.16" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="10.16" x2="55.88" y2="5.08" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="5.08" x2="101.6" y2="5.08" width="0.1016" layer="94"/>
-<wire x1="101.6" y1="5.08" x2="101.6" y2="0" width="0.1016" layer="94"/>
-<text x="57.15" y="6.35" size="2.54" layer="94" font="vector">&gt;LAST_DATE_TIME</text>
-<text x="57.15" y="1.27" size="2.54" layer="94" font="vector">Sheet:</text>
-<text x="71.12" y="1.27" size="2.54" layer="94" font="vector">&gt;SHEET</text>
-<text x="57.15" y="11.43" size="2.54" layer="94" font="vector">&gt;DRAWING_NAME</text>
-<text x="100.33" y="11.43" size="2.54" layer="94" align="bottom-right">&gt;REV</text>
-<text x="2.54" y="1.27" size="2.54" layer="94">&gt;URL</text>
-<wire x1="55.88" y1="10.16" x2="101.6" y2="10.16" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="15.24" x2="101.6" y2="15.24" width="0.1016" layer="94"/>
-<wire x1="55.88" y1="20.32" x2="0" y2="20.32" width="0.1016" layer="94"/>
-<wire x1="0" y1="20.32" x2="0" y2="0" width="0.1016" layer="94"/>
-<text x="2.54" y="16.51" size="1.778" layer="94">&gt;DESCRIPTION</text>
-<text x="57.15" y="16.51" size="2.54" layer="94" font="vector">&gt;AUTHOR_NAME</text>
-</symbol>
 <symbol name="ARDUINO101">
 <description>Schematic symbol for representing an Arduino/Genuino 101 board in an EAGLE schematic. Created by Dave Young for Element14. 
 More 101 documentation at: https://www.element14.com/community/docs/DOC-80459/l/intel-genuino-101-development-board 
@@ -1115,22 +1087,6 @@ More EAGLE documentation at: http://www.element14.com/community/community/knode/
 </device>
 </devices>
 </deviceset>
-<deviceset name="FRAME_LETTER_L">
-<gates>
-<gate name="G$1" symbol="FRAME_LETTER_L" x="0" y="0"/>
-<gate name="G$2" symbol="FRAME_DOCFIELD" x="147.32" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name="">
-<attribute name="AUTHOR_NAME" value="Coert Vonk" constant="no"/>
-<attribute name="DESCRIPTION" value="To enter description, right-clicking frame and select attributes" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="ARDUINO101" prefix="PCB">
 <description>Schematic symbol for representing an Arduino/Genuino 101 board in an EAGLE schematic. Created by Dave Young for Element14. 
 More 101 documentation at: https://www.element14.com/community/docs/DOC-80459/l/intel-genuino-101-development-board 
@@ -1340,12 +1296,6 @@ More EAGLE documentation at: http://www.element14.com/community/community/knode/
 <part name="P+7" library="Coert Vonk" deviceset="5V" device=""/>
 <part name="GND1" library="Coert Vonk" deviceset="GND" device=""/>
 <part name="GND7" library="Coert Vonk" deviceset="GND" device=""/>
-<part name="U$1" library="Coert Vonk" deviceset="FRAME_LETTER_L" device="">
-<attribute name="AUTHOR_NAME" value="Johan Vonk"/>
-<attribute name="DESCRIPTION" value="Math talk (SPI interface)"/>
-<attribute name="REV" value="0.1"/>
-<attribute name="URL" value="http://www.coertvonk.com"/>
-</part>
 <part name="GND11" library="Coert Vonk" deviceset="GND" device=""/>
 <part name="PCB2" library="Coert Vonk" deviceset="ARDUINO101" device=""/>
 <part name="PCB1" library="Coert Vonk" deviceset="NE0-NANO" device=""/>
@@ -1353,41 +1303,54 @@ More EAGLE documentation at: http://www.element14.com/community/community/knode/
 <sheets>
 <sheet>
 <plain>
-<text x="36.322" y="37.338" size="1.27" layer="97" rot="R90" align="bottom-center">MCU upload
+<text x="36.322" y="39.878" size="1.27" layer="97" rot="R90" align="bottom-center">MCU upload
 / UART debug</text>
-<text x="209.55" y="70.104" size="1.27" layer="97" rot="R90" align="bottom-center">FPGA firmware upload</text>
-<text x="114.3" y="22.352" size="1.27" layer="97" align="bottom-center">To NE0-NANO</text>
-<text x="220.98" y="43.18" size="1.778" layer="91" align="bottom-center">Power and bypass</text>
-<text x="36.322" y="22.098" size="1.27" layer="97" rot="R90" align="bottom-center">From pwr supply
+<text x="130.81" y="95.504" size="1.27" layer="97" rot="R90" align="bottom-center">FPGA firmware upload</text>
+<text x="109.22" y="24.892" size="1.27" layer="97" align="bottom-center">To NE0-NANO</text>
+<text x="36.322" y="24.638" size="1.27" layer="97" rot="R90" align="bottom-center">From pwr supply
 7VDC 1A</text>
-<text x="155.448" y="-9.144" size="1.27" layer="97">Shows how to connect Arduino 101 with
-Terasic NE0-nano board using SPI</text>
 </plain>
 <instances>
-<instance part="P+6" gate="1" x="220.98" y="33.02"/>
-<instance part="P+7" gate="1" x="114.3" y="17.78"/>
-<instance part="GND1" gate="1" x="71.12" y="10.16"/>
-<instance part="GND7" gate="1" x="220.98" y="12.7"/>
-<instance part="U$1" gate="G$1" x="0" y="-20.32"/>
-<instance part="U$1" gate="G$2" x="147.32" y="-20.32">
-<attribute name="URL" x="147.32" y="-20.32" size="1.778" layer="96" display="off"/>
-<attribute name="REV" x="147.32" y="-20.32" size="1.778" layer="96" display="off"/>
+<instance part="P+6" gate="1" x="88.9" y="104.14" smashed="yes">
+<attribute name="VALUE" x="88.9" y="105.41" size="1.778" layer="96" align="bottom-center"/>
 </instance>
-<instance part="GND11" gate="1" x="134.62" y="58.42"/>
-<instance part="PCB2" gate="G$1" x="40.64" y="17.78"/>
-<instance part="PCB1" gate="JP1" x="182.88" y="25.4" rot="MR0"/>
-<instance part="PCB1" gate="P" x="220.98" y="22.86"/>
-<instance part="PCB1" gate="USB" x="213.36" y="66.04"/>
+<instance part="P+7" gate="1" x="109.22" y="20.32" smashed="yes">
+<attribute name="VALUE" x="109.22" y="21.59" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="GND1" gate="1" x="71.12" y="12.7" smashed="yes">
+<attribute name="VALUE" x="71.12" y="10.16" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="GND7" gate="1" x="88.9" y="83.82" smashed="yes">
+<attribute name="VALUE" x="88.9" y="81.28" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="GND11" gate="1" x="116.84" y="58.42" smashed="yes">
+<attribute name="VALUE" x="116.84" y="55.88" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="PCB2" gate="G$1" x="40.64" y="20.32" smashed="yes">
+<attribute name="NAME" x="40.64" y="17.78" size="1.778" layer="95"/>
+<attribute name="VALUE" x="40.64" y="15.24" size="1.778" layer="96"/>
+</instance>
+<instance part="PCB1" gate="JP1" x="165.1" y="25.4" smashed="yes" rot="MR0">
+<attribute name="NAME" x="165.1" y="82.55" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="165.1" y="80.01" size="1.778" layer="96" rot="MR0"/>
+</instance>
+<instance part="PCB1" gate="P" x="88.9" y="93.98" smashed="yes">
+<attribute name="NAME" x="88.9" y="93.218" size="1.778" layer="95" align="bottom-center"/>
+</instance>
+<instance part="PCB1" gate="USB" x="134.62" y="91.44" smashed="yes">
+<attribute name="NAME" x="134.62" y="107.315" size="1.778" layer="95"/>
+<attribute name="VALUE" x="134.62" y="104.775" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="+5V" class="0">
 <segment>
-<wire x1="68.58" y1="2.54" x2="68.58" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="7.62" x2="68.58" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="P+7" gate="1" pin="+5V"/>
-<wire x1="68.58" y1="2.54" x2="114.3" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="2.54" x2="114.3" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="7.62" x2="109.22" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="109.22" y1="7.62" x2="109.22" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="PCB2" gate="G$1" pin="5V_OUT"/>
 </segment>
 <segment>
@@ -1398,13 +1361,13 @@ Terasic NE0-nano board using SPI</text>
 <net name="GND" class="0">
 <segment>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="71.12" y1="15.24" x2="71.12" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="17.78" x2="71.12" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="PCB2" gate="G$1" pin="GND@1"/>
 </segment>
 <segment>
 <pinref part="GND11" gate="1" pin="GND"/>
-<wire x1="147.32" y1="63.5" x2="134.62" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="134.62" y1="63.5" x2="134.62" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="63.5" x2="116.84" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="63.5" x2="116.84" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="PCB1" gate="JP1" pin="GND@1"/>
 </segment>
 <segment>
@@ -1414,36 +1377,36 @@ Terasic NE0-nano board using SPI</text>
 </net>
 <net name="SPI_SCLK" class="0">
 <segment>
-<wire x1="58.42" y1="58.42" x2="58.42" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="66.04" x2="147.32" y2="66.04" width="0.1524" layer="91"/>
-<label x="114.3" y="66.04" size="1.778" layer="95"/>
+<wire x1="58.42" y1="60.96" x2="58.42" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="66.04" x2="129.54" y2="66.04" width="0.1524" layer="91"/>
+<label x="96.52" y="66.04" size="1.778" layer="95"/>
 <pinref part="PCB2" gate="G$1" pin="13(SCK)"/>
 <pinref part="PCB1" gate="JP1" pin="PIN_B5"/>
 </segment>
 </net>
 <net name="SPI_MISO" class="0">
 <segment>
-<wire x1="60.96" y1="58.42" x2="60.96" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="68.58" x2="147.32" y2="68.58" width="0.1524" layer="91"/>
-<label x="114.3" y="68.58" size="1.778" layer="95"/>
+<wire x1="60.96" y1="60.96" x2="60.96" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="68.58" x2="129.54" y2="68.58" width="0.1524" layer="91"/>
+<label x="96.52" y="68.58" size="1.778" layer="95"/>
 <pinref part="PCB2" gate="G$1" pin="12(MISO)"/>
 <pinref part="PCB1" gate="JP1" pin="PIN_B4"/>
 </segment>
 </net>
 <net name="SPI_MOSI" class="0">
 <segment>
-<wire x1="63.5" y1="58.42" x2="63.5" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="71.12" x2="147.32" y2="71.12" width="0.1524" layer="91"/>
-<label x="114.3" y="71.12" size="1.778" layer="95"/>
+<wire x1="63.5" y1="60.96" x2="63.5" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="71.12" x2="129.54" y2="71.12" width="0.1524" layer="91"/>
+<label x="96.52" y="71.12" size="1.778" layer="95"/>
 <pinref part="PCB2" gate="G$1" pin="11(MOSI)"/>
 <pinref part="PCB1" gate="JP1" pin="PIN_A3"/>
 </segment>
 </net>
 <net name="SPI_FPGA_SS" class="0">
 <segment>
-<wire x1="66.04" y1="58.42" x2="66.04" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="73.66" x2="147.32" y2="73.66" width="0.1524" layer="91"/>
-<label x="114.3" y="73.66" size="1.778" layer="95"/>
+<wire x1="66.04" y1="60.96" x2="66.04" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="73.66" x2="129.54" y2="73.66" width="0.1524" layer="91"/>
+<label x="96.52" y="73.66" size="1.778" layer="95"/>
 <pinref part="PCB2" gate="G$1" pin="10(SS)"/>
 <pinref part="PCB1" gate="JP1" pin="PIN_C3"/>
 </segment>
