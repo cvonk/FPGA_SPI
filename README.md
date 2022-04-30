@@ -1,7 +1,5 @@
-# FPGA-Arduino interface using SPI
+# FPGA to microcontroller interface using SPI
 
-![Image](media/spi-logo-mathtalk-small.jpg)
+This implements registers on the FPGA that can be read or written from any microcontroller that supports the Serial Peripheral Interface (SPI). The article [Math Talk](http://coertvonk.com/category/hw/math-talk) describes the protocol, shows logic analyzer traces explains the Verilog implementation.
 
-The article [Math Talk](http://coertvonk.com/category/hw/math-talk) describes a protocol and implementation by which the FPGA can communicate with a microcontroller such as an Adruino. This repository holds the implementations of this SPI-based protocol.  
-
-Serial Peripheral Interface (SPI) is a synchronous full-duplex serial interface commonly used to communicate with on-board peripherals such as FLASH memory, A/D converters, temperature sensors, or in our case a Field Programmable Gate Array (FPGA).
+The FPGA implementation is for Altera, but should apply equally to Xilinx. Similarly, the microcontroller implementation is for Arduino but is trivial to write for other platforms.
